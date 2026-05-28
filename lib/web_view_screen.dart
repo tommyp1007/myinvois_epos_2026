@@ -137,8 +137,6 @@ class _WebViewScreenState extends State<WebViewScreen> with WidgetsBindingObserv
         disallowOverScroll: true,
         sharedCookiesEnabled: true,
         allowsPictureInPictureMediaPlayback: true,
-        allowsBackForwardNavigationGestures: true,
-        isFraudulentWebsiteWarningEnabled: false,
       ),
     );
   }
