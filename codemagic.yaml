@@ -1,6 +1,6 @@
 workflows:
-  ios-unsigned-build:
-    name: iOS Build (Unsigned for 3uTools)
+  default-workflow: &unsigned_ios
+    name: Default Workflow
     instance_type: mac_mini_m2
     max_build_duration: 60
     environment:
@@ -50,7 +50,12 @@ workflows:
           # 4. Zip the Payload folder into an .ipa file
           # We name it clearly and uniquely so each unsigned build is traceable.
           IPA_NAME="epos_pilot_unsigned_${BUILD_NUMBER}_$(date +%Y%m%d_%H%M%S).ipa"
-          zip -r "$IPA_NAME" Payload
+          /usr/bin/zip -r "$IPA_NAME" Payload
+          ls -lah *.ipa
 
     artifacts:
-      - build/ios/iphoneos/*.ipa
+      - build/ios/iphoneos/epos_pilot_unsigned_*.ipa
+
+  ios-unsigned-build:
+    <<: *unsigned_ios
+    name: iOS Build (Unsigned for 3uTools)
