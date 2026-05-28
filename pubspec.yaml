@@ -52,7 +52,7 @@ flutter:
 flutter_launcher_icons:
   android: "launcher_icon"
   ios: true
-  image_path: "assets/icon.png"
+  image_path: "assets/icon1.png"
   min_sdk_android: 21 # Required for modern Android features
   
   # PRO TIP: Adaptive Icons for Huawei/Android 8+
@@ -60,4 +60,4 @@ flutter_launcher_icons:
   # If your icon is a solid square, you can remove these two 'adaptive' lines.
   # If your icon is a logo with a transparent background, keep these!
   adaptive_icon_background: "#FFFFFF" # Hex color for the background circle
-  adaptive_icon_foreground: "assets/icon.png" # Your logo (transparent background)
+  adaptive_icon_foreground: "assets/icon1.png" # Your logo (transparent background)

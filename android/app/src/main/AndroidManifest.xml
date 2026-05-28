@@ -60,7 +60,7 @@
     </queries>
 
     <application
-        android:label="MyInvois e-POS"
+        android:label="MyInvois e-POS PreProd"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon"
         android:requestLegacyExternalStorage="true"

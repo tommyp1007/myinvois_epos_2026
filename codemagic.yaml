@@ -48,8 +48,9 @@ workflows:
           cp -r Runner.app Payload/
           
           # 4. Zip the Payload folder into an .ipa file
-          # We name it clearly so you know it is unsigned
-          zip -r epos_pilot.ipa Payload
+          # We name it clearly and uniquely so each unsigned build is traceable.
+          IPA_NAME="epos_pilot_unsigned_${BUILD_NUMBER}_$(date +%Y%m%d_%H%M%S).ipa"
+          zip -r "$IPA_NAME" Payload
 
     artifacts:
       - build/ios/iphoneos/*.ipa
