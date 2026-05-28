@@ -56,9 +56,6 @@ post_install do |installer|
         # Enable Photos (Saving receipts/Uploading)
         'PERMISSION_PHOTOS=1',
         
-        # Enable App Tracking Transparency (ATT)
-        'PERMISSION_APP_TRACKING_TRANSPARENCY=1',
-        
         # Enable Bluetooth (Thermal Printers)
         'PERMISSION_BLUETOOTH=1',
       ]

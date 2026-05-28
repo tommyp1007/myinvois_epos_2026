@@ -135,8 +135,10 @@ class _WebViewScreenState extends State<WebViewScreen> with WidgetsBindingObserv
       ios: IOSInAppWebViewOptions(
         allowsInlineMediaPlayback: true,
         disallowOverScroll: true,
-        sharedCookiesEnabled: true, 
+        sharedCookiesEnabled: true,
         allowsPictureInPictureMediaPlayback: true,
+        allowsBackForwardNavigationGestures: true,
+        isFraudulentWebsiteWarningEnabled: false,
       ),
     );
   }
@@ -565,14 +567,17 @@ class _WebViewScreenState extends State<WebViewScreen> with WidgetsBindingObserv
     controller.addJavaScriptHandler(
       handlerName: 'UpdateCustomerDisplay',
       callback: (args) async {
-        if (args.isNotEmpty) {
-          String jsonString = args[0];
-          // log("Sending Cart Update: $jsonString");
-          // Send JSON to the Pure Flutter Screen
+        // Secondary display plugin is Android-only; skip on iOS to avoid channel errors.
+        if (!Platform.isAndroid || args.isEmpty) return;
+
+        try {
+          final String jsonString = args[0];
           await _displayManager.transferDataToPresentation({
-            "type": "display_update", // Matches new CustomerScreen logic
-            "payload": jsonDecode(jsonString)
+            "type": "display_update",
+            "payload": jsonDecode(jsonString),
           });
+        } catch (e) {
+          log("UpdateCustomerDisplay error: $e");
         }
       },
     );
@@ -763,14 +768,12 @@ class _WebViewScreenState extends State<WebViewScreen> with WidgetsBindingObserv
   // ===========================================================================
 
   Future<void> _initPermissionsAndNotifications() async {
+    if (!Platform.isAndroid) return;
+
     await _initNotifications();
     await Permission.camera.request();
-    if (Platform.isAndroid) {
-      // [COMPLIANCE FIX] Removed MANAGE_EXTERNAL_STORAGE request.
-      // App-Specific storage does not require runtime storage permissions on Android 10+.
-      // We only request notification permission now.
-      await Permission.notification.request();
-    }
+    // App-specific storage does not require runtime storage permissions on Android 10+.
+    await Permission.notification.request();
   }
 
   Future<void> _initNotifications() async {

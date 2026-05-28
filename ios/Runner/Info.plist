@@ -38,9 +38,6 @@
     <key>UILaunchStoryboardName</key>
     <string>LaunchScreen</string>
 
-    <key>UIMainStoryboardFile</key>
-    <string>Main</string>
-    
     <key>UIViewControllerBasedStatusBarAppearance</key>
     <false/>
 
@@ -64,18 +61,6 @@
         <string>UIInterfaceOrientationPortraitUpsideDown</string>
         <string>UIInterfaceOrientationLandscapeLeft</string>
         <string>UIInterfaceOrientationLandscapeRight</string>
-    </array>
-
-    <key>UIBackgroundModes</key>
-    <array>
-        <string>fetch</string>
-        <string>processing</string>
-        <string>remote-notification</string>
-    </array>
-
-    <key>BGTaskSchedulerPermittedIdentifiers</key>
-    <array>
-        <string>lhdn.myinvois.epos.backgroundtask</string>
     </array>
 
     <key>NSAppTransportSecurity</key>
@@ -110,8 +95,17 @@
     <key>NSDocumentsFolderUsageDescription</key>
     <string>This app needs access to store generated PDF reports.</string>
 
-    <key>NSUserTrackingUsageDescription</key>
-    <string>This identifier will be used to deliver personalized ads and analytics to you.</string>
+    <key>ITSAppUsesNonExemptEncryption</key>
+    <false/>
+
+    <key>LSApplicationQueriesSchemes</key>
+    <array>
+        <string>https</string>
+        <string>http</string>
+        <string>tel</string>
+        <string>mailto</string>
+        <string>sms</string>
+    </array>
 
 </dict>
 </plist>
